@@ -1,0 +1,626 @@
+name: "Clon y Mejora del Sitio Web Datos Dinámicos"
+description: |
+  Plan para clonar y mejorar el sitio web de Datos Dinámicos, implementando un diseño moderno, responsive y optimizado para SEO, manteniendo la estructura de contenido existente.
+
+---
+
+## Goal
+Clonar y mejorar el sitio web existente de Datos Dinámicos (datosdinamicos.com), manteniendo su estructura principal de 4 secciones (portada, servicios/cursos, sobre nosotros y contacto), pero mejorando la experiencia de usuario, rendimiento y diseño visual según la identidad de marca proporcionada.
+
+## Why
+- Proporcionar una versión mejorada del sitio web que mantenga la esencia de la marca pero con mejor rendimiento
+- Implementar un diseño responsive optimizado para todos los dispositivos (móvil, tablet, escritorio)
+- Aplicar la paleta de colores especificada (#110B3C, #8557EA, #FFFFFF) de manera consistente
+- Mejorar la experiencia del usuario con transiciones y animaciones sutiles
+- Optimizar para SEO para aumentar la visibilidad en buscadores
+- Facilitar la gestión y mantenimiento del sitio mediante una estructura de código limpia y modular
+- Permitir el despliegue sencillo en Vercel para un hosting rápido y confiable
+
+## What
+Una versión mejorada del sitio web de Datos Dinámicos con las siguientes características:
+
+- Sitio web de una sola página (SPA) con 4 secciones principales:
+  1. **Portada (Hero)**: Presentación principal con título, subtítulo y call-to-action
+  2. **Servicios/Cursos**: Listado de cursos ofrecidos con enlaces a páginas detalladas
+  3. **Sobre Nosotros**: Información sobre los fundadores y la misión de Datos Dinámicos
+  4. **Contacto**: Formulario para que los visitantes dejen sus datos de contacto
+
+- Páginas adicionales para cada curso con información detallada
+- Implementación responsive que se adapta a diferentes tamaños de pantalla
+- Optimización para SEO y rendimiento web
+- Diseño visual moderno que utiliza la paleta de colores especificada
+- Código limpio y bien estructurado para facilitar el mantenimiento
+
+### Success Criteria
+- [ ] El sitio web mantiene la estructura de contenido del sitio existente pero con diseño mejorado
+- [ ] Implementación correcta de la paleta de colores especificada (#110B3C, #8557EA, #FFFFFF)
+- [ ] El sitio web es completamente responsive en dispositivos móviles, tablets y escritorio
+- [ ] Las páginas de cursos individuales muestran información detallada de cada curso
+- [ ] El formulario de contacto captura correctamente la información de los usuarios
+- [ ] Optimización para SEO con metadatos adecuados, estructura semántica y rendimiento optimizado
+- [ ] Puntuación Lighthouse superior a 90 en Performance, Accesibilidad, Mejores Prácticas y SEO
+- [ ] Guía detallada para desplegar el sitio en Vercel
+
+## All Needed Context
+
+### Documentation & References
+```yaml
+# MUST READ
+- url: https://nextjs.org/docs
+  why: Framework recomendado para construir sitios web modernos con React, optimizado para SEO y con fácil despliegue en Vercel
+
+- url: https://tailwindcss.com/docs
+  why: Framework CSS para implementar diseños responsive de manera eficiente
+
+- url: https://vercel.com/docs/deployments/overview
+  why: Documentación para desplegar el sitio en Vercel
+
+- url: https://react-hook-form.com/get-started
+  why: Librería para implementar el formulario de contacto de manera eficiente
+
+- url: https://web.dev/vitals/
+  why: Optimización para Core Web Vitals que afectan SEO y experiencia de usuario
+
+- url: https://formspree.io/
+  why: Servicio para implementar el envío de formularios sin backend propio
+```
+
+### Current Codebase tree
+```bash
+/Users/gcoral/Documents/Personal-project/web-datos-dinamicos/
+├── .windsurf/
+├── INITIAL.md
+├── INITIAL_EXAMPLE.md
+├── PRPs/
+│   ├── EXAMPLE_multi_agent_prp.md
+│   ├── clon_datos_dinamicos.md  # Este archivo PRP
+│   └── templates/
+│       └── prp_base.md
+├── README.md
+├── context_engineering/
+├── docs/
+│   ├── guia_claude_code.md
+│   ├── guia_cursor.md
+│   └── guia_windsurf.md
+├── examples/
+│   ├── IDENTIDAD DE VISUAL DATOS DINAMICOS.pdf
+│   ├── LOGO/
+│   ├── MOCKUPS/
+│   │   ├── MOCKUP 1.jpg
+│   │   ├── Mockup 2.jpg
+│   │   ├── Mockup 4.jpg
+│   │   └── mockup 3.jpg
+│   └── imagenes/
+├── node_modules/
+├── package-lock.json
+└── package.json
+```
+
+### Desired Codebase tree with files to be added
+```bash
+/Users/gcoral/Documents/Personal-project/web-datos-dinamicos/
+├── .windsurf/
+├── INITIAL.md
+├── INITIAL_EXAMPLE.md
+├── PRPs/
+│   ├── EXAMPLE_multi_agent_prp.md
+│   ├── clon_datos_dinamicos.md  # Este archivo PRP
+│   └── templates/
+│       └── prp_base.md
+├── README.md
+├── context_engineering/
+├── docs/
+│   ├── guia_claude_code.md
+│   ├── guia_cursor.md
+│   ├── guia_windsurf.md
+│   └── vercel_deployment.md  # Nueva guía de despliegue en Vercel
+├── examples/
+│   ├── IDENTIDAD DE VISUAL DATOS DINAMICOS.pdf
+│   ├── LOGO/
+│   ├── MOCKUPS/
+│   └── imagenes/
+└── website/  # Nueva carpeta para el código del sitio web
+    ├── .env.local.example  # Variables de entorno de ejemplo
+    ├── .gitignore  # Archivos a ignorar por git
+    ├── README.md  # Instrucciones de configuración y uso
+    ├── components/  # Componentes React reutilizables
+    │   ├── contact/
+    │   │   ├── ContactForm.jsx  # Formulario de contacto
+    │   │   └── FormSuccess.jsx  # Mensaje de éxito al enviar formulario
+    │   ├── courses/
+    │   │   ├── CourseCard.jsx  # Tarjeta para mostrar cursos
+    │   │   └── CourseList.jsx  # Lista de cursos
+    │   ├── layout/
+    │   │   ├── Footer.jsx  # Pie de página
+    │   │   ├── Header.jsx  # Encabezado con navegación
+    │   │   └── Layout.jsx  # Layout principal
+    │   ├── sections/
+    │   │   ├── AboutSection.jsx  # Sección "Sobre nosotros"
+    │   │   ├── ContactSection.jsx  # Sección de contacto
+    │   │   ├── CoursesSection.jsx  # Sección de cursos
+    │   │   └── HeroSection.jsx  # Sección principal/portada
+    │   └── ui/
+    │       ├── Button.jsx  # Botón reutilizable
+    │       └── TeamMember.jsx  # Componente para mostrar miembros del equipo
+    ├── data/
+    │   └── courses.json  # Datos de los cursos
+    ├── jsconfig.json  # Configuración para importaciones absolutas
+    ├── next.config.js  # Configuración de Next.js
+    ├── package.json  # Dependencias del proyecto
+    ├── pages/
+    │   ├── _app.js  # Configuración global de la aplicación
+    │   ├── _document.js  # Personalización del documento HTML
+    │   ├── curso/
+    │   │   └── [slug].js  # Página dinámica para cada curso
+    │   ├── index.js  # Página principal
+    │   └── api/
+    │       └── contact.js  # API route para el formulario de contacto
+    ├── public/
+    │   ├── favicon.ico
+    │   └── images/
+    │       ├── logo.svg  # Logo optimizado de Datos Dinámicos
+    │       └── team/
+    │           ├── gabriel.jpg  # Imagen optimizada de Gabriel Coral
+    │           └── andres.jpg  # Imagen optimizada de Andres Insuasty
+    ├── styles/
+    │   ├── globals.css  # Estilos globales
+    │   └── theme.js  # Configuración de tema y colores
+    └── tailwind.config.js  # Configuración de Tailwind CSS
+```
+
+### Known Gotchas of our codebase & Library Quirks
+```javascript
+// CRITICAL: Next.js tiene dos sistemas de enrutamiento: Pages Router (tradicional) y App Router (nuevo). 
+// Para este proyecto usaremos Pages Router por su mayor estabilidad y compatibilidad
+
+// CRITICAL: Los colores específicos (#110B3C, #8557EA, #FFFFFF) deben configurarse en tailwind.config.js
+// para mantener consistencia en toda la aplicación
+
+// CRITICAL: La optimización de imágenes debe hacerse con el componente Image de Next.js para mejorar rendimiento
+
+// CRITICAL: El envío de formularios debe incluir validación tanto del lado del cliente como del servidor
+
+// CRITICAL: El sitio debe mantener una buena accesibilidad (A11y) con etiquetas semánticas apropiadas y
+// atributos ARIA donde sean necesarios
+
+// CRITICAL: Para despliegue en Vercel, el repositorio debe estar vinculado a una cuenta de GitHub o similar
+
+// CRITICAL: Las animaciones y transiciones deben ser sutiles y no afectar el rendimiento o accesibilidad
+```
+
+## Implementation Blueprint
+
+### Data models and structure
+
+```javascript
+// Modelo para un curso
+const Course = {
+  id: String,           // Identificador único del curso
+  slug: String,         // URL amigable (ej: "introduccion-python")
+  title: String,        // Título del curso
+  description: String,  // Descripción corta para mostrar en tarjetas
+  fullDescription: String, // Descripción completa para la página individual
+  image: String,        // Ruta a la imagen del curso
+  features: Array,      // Características/temas que cubre el curso
+  level: String,        // Nivel (principiante, intermedio, avanzado)
+  duration: String,     // Duración estimada
+  instructor: String,   // Nombre del instructor
+  price: Number,        // Precio (opcional)
+  externalLink: String  // Enlace externo para inscripción (Hotmart)
+};
+
+// Modelo para un miembro del equipo
+const TeamMember = {
+  id: String,           // Identificador único
+  name: String,         // Nombre completo
+  role: String,         // Rol/cargo
+  company: String,      // Empresa donde trabaja
+  bio: String,          // Biografía corta
+  image: String,        // Ruta a la imagen de perfil
+  specialties: Array    // Especialidades (ej: ["Python", "SQL", "PowerBI"])
+};
+
+// Modelo para mensaje de contacto
+const ContactMessage = {
+  name: String,         // Nombre del interesado
+  email: String,        // Correo electrónico
+  createdAt: Date       // Fecha de envío
+};
+```
+
+### Lista de tareas a completar en orden
+
+```yaml
+Task 1:
+SETUP proyecto Next.js con Tailwind CSS:
+  - Crear estructura básica del proyecto
+  - Configurar Tailwind CSS con la paleta de colores personalizada
+  - Configurar ESLint y Prettier para calidad de código
+  - Implementar estructura de carpetas
+
+Task 2:
+CREATE components/layout:
+  - Implementar Header.jsx con navegación y logo
+  - Implementar Footer.jsx con enlaces y social media
+  - Implementar Layout.jsx como contenedor principal
+
+Task 3:
+CREATE components/sections/HeroSection.jsx:
+  - Implementar la sección principal/portada
+  - Incluir título, subtítulo y call-to-action
+  - Asegurar diseño responsive
+
+Task 4:
+CREATE components/ui:
+  - Implementar Button.jsx como componente reutilizable
+  - Implementar TeamMember.jsx para mostrar miembros del equipo
+
+Task 5:
+CREATE data/courses.json:
+  - Estructurar datos de cursos según el modelo definido
+  - Incluir al menos 4-5 cursos de ejemplo
+
+Task 6:
+CREATE components/courses:
+  - Implementar CourseCard.jsx para mostrar curso individual
+  - Implementar CourseList.jsx para mostrar lista de cursos
+
+Task 7:
+CREATE components/sections/CoursesSection.jsx:
+  - Implementar sección de cursos/servicios
+  - Integrar componentes de cursos creados anteriormente
+
+Task 8:
+CREATE components/sections/AboutSection.jsx:
+  - Implementar sección "Sobre nosotros"
+  - Incluir información de los fundadores (Gabriel Coral y Andres Insuasty)
+  - Integrar componente TeamMember
+
+Task 9:
+CREATE components/contact:
+  - Implementar ContactForm.jsx con validaciones
+  - Implementar FormSuccess.jsx para confirmación
+
+Task 10:
+CREATE components/sections/ContactSection.jsx:
+  - Implementar sección de contacto
+  - Integrar formulario de contacto
+
+Task 11:
+CREATE pages/api/contact.js:
+  - Implementar API route para procesar el formulario
+  - Integrar con servicio externo (Formspree)
+  - Implementar validaciones del lado del servidor
+
+Task 12:
+CREATE pages/index.js:
+  - Integrar todas las secciones en la página principal
+  - Implementar SEO con meta tags
+
+Task 13:
+CREATE pages/curso/[slug].js:
+  - Implementar página dinámica para cursos individuales
+  - Mostrar detalles completos del curso
+  - Implementar navegación de regreso
+
+Task 14:
+OPTIMIZE para SEO y rendimiento:
+  - Optimizar imágenes con Next Image
+  - Implementar meta tags para SEO
+  - Asegurar accesibilidad (A11y)
+
+Task 15:
+CREATE docs/vercel_deployment.md:
+  - Crear guía de despliegue en Vercel
+  - Incluir paso a paso detallado con imágenes
+```
+
+### Pseudocódigo para tareas clave
+
+```jsx
+// Task 1: Configuración de Tailwind con paleta personalizada
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: "#110B3C",    // Color principal
+        secondary: "#8557EA",  // Color secundario
+        white: "#FFFFFF",      // Color blanco
+      },
+      // Otras configuraciones personalizadas...
+    },
+  },
+  plugins: [],
+}
+
+// Task 3: Implementación de HeroSection
+// components/sections/HeroSection.jsx
+import React from 'react';
+import Button from '../ui/Button';
+import Image from 'next/image';
+
+export default function HeroSection() {
+  return (
+    <section id="home" className="bg-primary text-white min-h-screen flex items-center">
+      <div className="container mx-auto px-4 py-16">
+        <div className="flex flex-col md:flex-row items-center">
+          {/* Contenido textual */}
+          <div className="md:w-1/2 mb-8 md:mb-0">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">DATOS<br/>DINAMICOS</h1>
+            <p className="text-xl md:text-2xl mb-8">
+              Mejora tu perfil profesional con Analítica, Ciencia e Ingeniería de Datos, 
+              aprende también sobre Inteligencia Artificial
+            </p>
+            <Button href="#courses">Ver Ofertas</Button>
+          </div>
+          
+          {/* Imagen o gráfico */}
+          <div className="md:w-1/2">
+            <Image 
+              src="/images/hero-image.svg" 
+              alt="Datos Dinámicos Hero" 
+              width={600} 
+              height={400}
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Task 9: Implementación del formulario de contacto
+// components/contact/ContactForm.jsx
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Button from '../ui/Button';
+
+export default function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors },
+    reset
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      if (response.ok) {
+        setSubmitSuccess(true);
+        reset();
+      } else {
+        console.error('Error al enviar el formulario');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitSuccess) {
+    return <FormSuccess />;
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto">
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-sm font-medium mb-1">
+          Nombre
+        </label>
+        <input
+          id="name"
+          type="text"
+          className="w-full px-3 py-2 border rounded-md"
+          {...register("name", { required: "El nombre es obligatorio" })}
+        />
+        {errors.name && (
+          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+        )}
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium mb-1">
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          className="w-full px-3 py-2 border rounded-md"
+          {...register("email", { 
+            required: "El email es obligatorio",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: "Dirección de email inválida"
+            }
+          })}
+        />
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+        )}
+      </div>
+
+      <Button 
+        type="submit" 
+        disabled={isSubmitting}
+        className="w-full"
+      >
+        {isSubmitting ? "Enviando..." : "Enviar"}
+      </Button>
+    </form>
+  );
+}
+
+// Task 11: API route para procesar el formulario
+// pages/api/contact.js
+export default async function handler(req, res) {
+  // Solo permitir método POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  const { name, email } = req.body;
+
+  // Validación básica
+  if (!name || !email) {
+    return res.status(400).json({ error: 'Faltan campos obligatorios' });
+  }
+
+  try {
+    // Enviar a Formspree (servicio externo)
+    const formResponse = await fetch('https://formspree.io/f/your-form-id', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email }),
+    });
+
+    if (formResponse.ok) {
+      return res.status(200).json({ success: true });
+    } else {
+      throw new Error('Error al enviar el formulario');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    return res.status(500).json({ error: 'Error al procesar la solicitud' });
+  }
+}
+```
+
+### Integration Points
+```yaml
+COMPONENTES:
+  - Header: "Navegación y marca"
+  - Footer: "Enlaces y copyright"
+  - Sections: "Contenedores principales para cada área de la página"
+  - UI: "Componentes reutilizables como botones, tarjetas, etc."
+
+DATA:
+  - courses.json: "Datos de los cursos"
+  - Imágenes: "Logo e imágenes optimizadas"
+
+API:
+  - /api/contact: "Procesamiento del formulario de contacto"
+
+SEO:
+  - Meta tags: "Configurados en cada página"
+  - Sitemap: "Para indexación de búsqueda"
+
+ESTILOS:
+  - Tailwind: "Framework CSS principal"
+  - Custom CSS: "Estilos específicos para componentes"
+```
+
+## Validation Loop
+
+### Level 1: Syntax & Style
+```bash
+# Comprobar sintaxis y estilo
+npm run lint
+
+# Formatear código
+npm run format
+
+# Expected: No errors. Si hay errores, leer y corregir.
+```
+
+### Level 2: Pruebas Unitarias
+```jsx
+// __tests__/components/ui/Button.test.js
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Button from '../../../components/ui/Button';
+
+describe('Button Component', () => {
+  test('renders button with correct text', () => {
+    render(<Button>Test Button</Button>);
+    expect(screen.getByText('Test Button')).toBeInTheDocument();
+  });
+
+  test('applies primary style by default', () => {
+    render(<Button>Test Button</Button>);
+    const button = screen.getByText('Test Button');
+    expect(button).toHaveClass('bg-secondary');
+  });
+
+  test('renders as link when href is provided', () => {
+    render(<Button href="#test">Test Link</Button>);
+    const link = screen.getByText('Test Link');
+    expect(link.tagName).toBe('A');
+    expect(link).toHaveAttribute('href', '#test');
+  });
+});
+```
+
+```bash
+# Ejecutar pruebas unitarias
+npm test
+
+# Si fallan: Leer el error, entender la causa, corregir el código y volver a ejecutar
+```
+
+### Level 3: Prueba Local
+```bash
+# Iniciar servidor de desarrollo
+npm run dev
+
+# Visitar página en navegador
+open http://localhost:3000
+
+# Probar todas las secciones y funcionalidades
+# Verificar responsive design con herramientas de desarrollo del navegador
+
+# Ejecutar Lighthouse en Chrome DevTools para verificar rendimiento, accesibilidad, SEO, etc.
+```
+
+## Final Validation Checklist
+- [ ] Todas las secciones se muestran correctamente (portada, servicios/cursos, sobre nosotros, contacto)
+- [ ] El diseño es responsive y se ve bien en móvil, tablet y escritorio
+- [ ] Los colores coinciden con la paleta especificada (#110B3C, #8557EA, #FFFFFF)
+- [ ] El formulario de contacto funciona correctamente
+- [ ] Las páginas individuales de cursos muestran la información completa
+- [ ] La navegación es intuitiva y funciona correctamente
+- [ ] Las imágenes están optimizadas y se cargan rápidamente
+- [ ] El sitio cumple con criterios básicos de accesibilidad
+- [ ] Los meta tags de SEO están configurados correctamente
+- [ ] El rendimiento es óptimo (puntuación Lighthouse superior a 90)
+- [ ] La guía de despliegue en Vercel está completa y es fácil de seguir
+
+---
+
+## Anti-Patterns to Avoid
+- ❌ No utilices imágenes sin optimizar (usa siempre next/image)
+- ❌ No implementes estilos inline (usa Tailwind o clases CSS)
+- ❌ No cargues recursos innecesarios que afecten el rendimiento
+- ❌ No uses JavaScript donde CSS puede hacer el mismo trabajo
+- ❌ No olvides incluir atributos de accesibilidad (alt, aria-label, etc.)
+- ❌ No ignores la versión móvil (mobile-first approach)
+- ❌ No uses colores fuera de la paleta especificada
+- ❌ No compliques innecesariamente la estructura de componentes
+- ❌ No ignores las prácticas de SEO básicas
+- ❌ No dejes el formulario de contacto sin validaciones adecuadas
+
+---
+
+## Nota de implementación
+Este PRP proporciona una guía completa para clonar y mejorar el sitio web de Datos Dinámicos. La implementación con Next.js y Tailwind CSS ofrece un equilibrio óptimo entre facilidad de desarrollo, rendimiento y SEO, mientras que el despliegue en Vercel garantiza un proceso sencillo y confiable.
+
+**Puntuación de confianza: 9/10** - Esta implementación debería lograr todos los objetivos especificados con un alto nivel de calidad y profesionalismo.
